@@ -2,7 +2,7 @@
 title: "R: Functions and Packages"
 subtitle: "Part 2: Basic package construction"
 author: "Mik Black"
-date: "2 Feb 2016"
+date: "8 Feb 2016"
 output: ioslides_presentation
 ---
 
@@ -10,7 +10,7 @@ output: ioslides_presentation
 
  - There is a perfectly good Software Carpentry lesson on creating R packages, but we will not be using it:
  
- http://swcarpentry.github.io/r-novice-inflammation/08-making-packages-R.html
+ http://swcarpentry.github.io/r-novice-inflammation/08-making-packages-R/
 
  - Why not?  Because I had already written some of my slides when Murray pointed out that I had re-invented the wheel.
  
