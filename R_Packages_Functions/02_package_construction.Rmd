@@ -165,7 +165,7 @@ setwd("..")
 install("cats")
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE}
 install('cats')
 ```
 
