@@ -34,6 +34,7 @@ R specific variants
 Incorporate and execute R code in your markdown!
 
 What Can I Do?
+
 - Documents
 - Notebooks
 - Presentations
