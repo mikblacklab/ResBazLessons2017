@@ -1,0 +1,140 @@
+---
+title: "(R)Markdown and more"
+author: "Murray Cadzow"
+date: "9 Feb 2017"
+output: ioslides_presentation
+---
+
+## Attribution
+
+Source for some of the slides is from
+
+http://swcarpentry.github.io/r-novice-gapminder/15-knitr-markdown/
+
+Bookdown:
+
+https://bookdown.org/yihui/bookdown/
+  
+## What is markdown?
+  
+
+
+> *Markdown* is a lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML and many other formats using a tool by the same name
+
+[wikipedia](https://en.wikipedia.org/wiki/Markdown)
+
+
+R specific variants
+
+- RMarkdown
+- Bookdown
+
+## RMarkdown
+
+Incorporate and execute R code in your markdown!
+
+What Can I Do?
+- Documents
+- Notebooks
+- Presentations
+- Interactive Documents (Shiny)
+
+## Components
+
+- YAML header
+- Text
+- Code chunks
+
+## YAML
+
+Lets R know some info about your document such as:
+
+- title
+- output type
+- date of creation
+- author
+
+Bare basic setup:
+
+<code>
+```
+---
+title: "my title"
+output: html_document
+---
+```
+</code>
+
+## Text
+
+Plain text syntax that is converted into formatted text
+
+## Cheatsheets
+
+In RStudio: Help -> Cheatsheets
+
+- [Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) 
+- [Cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+
+
+## Practice markdown
+
+[http://www.markdowntutorial.com/](http://www.markdowntutorial.com/)
+
+## Code chunks
+
+The 'executable' portions of your Rmd
+
+<code>
+<pre>
+&#96;&#96;&#96;{r load_libraries, echo=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+&#96;&#96;&#96;
+</pre>
+</code>
+
+## Chunk options
+
+There are a variety of options to affect how the code chunks are
+treated.
+
+- Use `echo=FALSE` to avoid having the code itself shown.
+- Use `results="hide"` to avoid having any results printed.
+- Use `eval=FALSE` to have the code shown but not evaluated.
+- Use `warning=FALSE` and `message=FALSE` to hide any warnings or
+  messages produced.
+- Use `fig.height` and `fig.width` to control the size of the figures
+  produced (in inches).
+  
+## Inline R code
+
+You can make _every_ number in your report reproducible. Use
+<code>&#96;r</code> and <code>&#96;</code> for an in-line code chunk,
+like so: <code>&#96;r round(some_value, 2)&#96;</code>. The code will be
+executed and replaced with the _value_ of the result.
+
+Don't let these in-line chunks get split across lines.
+
+
+## RStudio example
+
+## Bookdown
+
+https://bookdown.org/yihui/bookdown/
+
+```{r, echo = TRUE, eval = FALSE}
+# CRAN (stable)
+install.packages("bookdown")
+# github (development)
+# devtools::install_github("rstudio/bookdown")
+library(bookdown)
+```
+
+## bookdown dir
+
+- index.Rmd
+- _bookdown.yml
+- 1_chap_name.Rmd
+- 2_chap_name.Rmd ...
+- references.bib

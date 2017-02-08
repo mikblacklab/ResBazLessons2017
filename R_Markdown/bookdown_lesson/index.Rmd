@@ -1,0 +1,9 @@
+---
+title: 'My bookdown book'
+author: "Murray Cadzow"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output:
+  bookdown::gitbook: default
+documentclass: book
+---
