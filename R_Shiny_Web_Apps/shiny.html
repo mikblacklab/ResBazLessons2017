@@ -421,7 +421,7 @@ shinyUI(pageWithSidebar(
 <p>Shiny also provides the ability to “conditionally” display input selectors.</p>
 <p>In our current app, the slider input remains visible when the boxplot tab is being viewed, even though it is not relevant for that plot (and moving it has no impact).</p>
 <p>To ensure that the slider only appears for the histogram panel, alter the ui.R file to specify when it should be displayed.</p>
-<p>The sidebarPanel section of ui.r now becomes:</p>
+<p>The sidebarPanel section of ui.R now becomes:</p>
 <pre class="r"><code>sidebarPanel(
     
   selectInput(inputId = &quot;plot_var&quot;,

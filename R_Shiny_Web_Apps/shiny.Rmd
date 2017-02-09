@@ -399,7 +399,7 @@ In our current app, the slider input remains visible when the boxplot tab is bei
 
 To ensure that the slider only appears for the histogram panel, alter the ui.R file to specify when it should be displayed.
 
-The sidebarPanel section of ui.r now becomes:
+The sidebarPanel section of ui.R now becomes:
 
 ```{r, eval=FALSE}
 sidebarPanel(
