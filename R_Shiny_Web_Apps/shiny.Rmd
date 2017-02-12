@@ -1,7 +1,7 @@
 ---
 title: "R-based web apps with Shiny"
 author: "Mik Black"
-date: "4 February 2016"
+date: "10 February 2017"
 output: html_document
 ---
 
@@ -34,7 +34,7 @@ The shiny packages allows users to create incricate (or simple) interactive web 
 
 All code is written in R, so there is no need to use web-specific tools such as javascript or CSS.
 
-Over the past two years, shiny has become an incredibly popular tool for generating interactive web pages, and a huge number of powerful and compelling interfaces have been created.
+Over the past three years, shiny has become an incredibly popular tool for generating interactive web pages, and a huge number of powerful and compelling interfaces have been created.
 
 ## Shiny components
 
@@ -399,7 +399,7 @@ In our current app, the slider input remains visible when the boxplot tab is bei
 
 To ensure that the slider only appears for the histogram panel, alter the ui.R file to specify when it should be displayed.
 
-The sidebarPanel section of ui.r now becomes:
+The sidebarPanel section of ui.R now becomes:
 
 ```{r, eval=FALSE}
 sidebarPanel(

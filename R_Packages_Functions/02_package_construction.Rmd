@@ -73,7 +73,7 @@ list.files(path = "cats", recursive=TRUE, include.dirs=TRUE)
 ## Create a function
 
  - Even though you've just spent ages creating funcions, lets make another one!  
- - A really simple on this time:
+ - A really simple one this time:
 
 ```{r}
 cat_function <- function(love=TRUE){
