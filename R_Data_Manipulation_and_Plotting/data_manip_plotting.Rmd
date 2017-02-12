@@ -1,0 +1,269 @@
+# Data manipulation and plotting
+
+
+## Setup
+Cheatsheets for dplyr and ggplot2 are available in rstudio by using the Help menu (Help -> Cheatsheets)
+
+Install and load the libraries
+```{r}
+# if libraries are not installed uncomment the next 3 lines
+# install.packages('dplyr')
+# install.packages('ggplot2')
+# install.packages('tidyr')
+
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+```
+
+## Data manipulation using dplyr
+
+Have a look at the iris dataset and introduce %>% for piping
+
+Most commands will end with a '%>% head()' to reduce excessive results being displayed
+```{r}
+data("iris")
+View(iris)
+
+iris %>% head()
+head(iris)
+names(iris)
+colnames(iris)
+```
+
+
+Demonstrate standard versus dplyr method for selecting a column 
+```{r}
+iris[,"Sepal.Length"]
+iris$Sepal.Length
+# select 2 columns with dplyr
+iris %>% select(Sepal.Length, Sepal.Width) %>% head()
+# use -columnname to deselect that column
+iris %>% select( -Species) %>% head()
+```
+
+
+Choose rows using filter()
+
+```{r}
+iris %>% select(Sepal.Length, Sepal.Width) %>% filter(Sepal.Length > 5) %>% head()
+```
+
+Summarise data
+```{r}
+iris %>% 
+  select(Sepal.Length, Sepal.Width) %>% 
+  filter(Sepal.Length > 5) %>% 
+  summarise(min(Sepal.Length), max(Sepal.Width))
+
+iris %>% 
+  select(Sepal.Length, Sepal.Width) %>% 
+  filter(Sepal.Length > 5) %>% 
+  summarise(minLength = min(Sepal.Length), maxWidth = max(Sepal.Width))
+```
+
+
+Use of group_by() to summarise by groups
+```{r}
+iris %>% 
+  select(Sepal.Length, Sepal.Width, Species) %>% 
+  filter(Sepal.Length > 5) %>% 
+  group_by(Species) %>% 
+  summarise(minLength = min(Sepal.Length), maxWidth = max(Sepal.Width))
+```
+
+tally() to count rows and compare with results from dim()
+```{r}
+iris %>% 
+  select(Sepal.Length, Sepal.Width, Species) %>% 
+  filter(Sepal.Length > 5) %>% 
+  tally()
+
+dim(iris[iris$Sepal.Length > 5, ])
+```
+
+tally() on groups
+```{r}
+iris %>% 
+  select(Sepal.Length, Sepal.Width, Species) %>% 
+  filter(Sepal.Length > 5) %>% 
+  group_by(Species) %>% 
+  tally()
+```
+
+
+creating new columns with mutate()
+```{r}
+iris %>% 
+  select(Sepal.Length, Sepal.Width, Species) %>% 
+  filter(Sepal.Length > 5) %>% 
+  mutate(Length100 = Sepal.Length * 100, length100_2 = Length100 * 2) %>% 
+  head()
+```
+
+
+sorting data in ascending order based on column using arrange()
+```{r}
+iris %>% 
+  select(Sepal.Length, Sepal.Width, Species) %>% 
+  filter(Sepal.Length > 5) %>% 
+  arrange(Sepal.Length) %>% 
+  head()
+# arranged in descending order using desc() inside arrange()
+iris %>% 
+  select(Sepal.Length, Sepal.Width, Species) %>% 
+  filter(Sepal.Length > 5) %>% 
+  arrange(desc(Sepal.Length)) %>% 
+  head()
+```
+
+
+Showing the unique rows with distinct()
+```{r}
+iris %>% 
+  select(Sepal.Length, Species) %>% 
+  filter(Sepal.Length > 5) %>% 
+  arrange(desc(Sepal.Length)) %>% 
+  select(Sepal.Length, Species) %>% 
+  distinct() %>% 
+  head()
+
+#tally distinct rows
+iris %>% 
+  select(Sepal.Length, Species) %>% 
+  filter(Sepal.Length > 5) %>% 
+  arrange(desc(Sepal.Length)) %>% 
+  select(Sepal.Length, Species) %>% 
+  distinct() %>% 
+  tally()
+
+# tally without distinct()
+iris %>% 
+  select(Sepal.Length, Species) %>% 
+  filter(Sepal.Length > 5) %>% 
+  arrange(desc(Sepal.Length)) %>% 
+  select(Sepal.Length, Species) %>% 
+  tally()
+
+```
+
+
+
+
+
+## ggplot2
+
+### documentation for ggplot2: http://docs.ggplot2.org/current/
+
+ggplot2 uses a method of mapping the data, defining the aesthetics, and finally using geometric obects to represent the data
+
+
+base plot example
+```{r}
+plot(iris$Sepal.Length, iris$Width)
+```
+
+
+scatter plot
+```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
+```
+
+histogram
+
+```{r}
+ggplot(iris, aes(x = Sepal.Length)) + geom_histogram()
+```
+
+line plot
+```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_line()
+```
+
+
+
+box plot
+```{r}
+# all data
+ggplot(iris, aes(x = 1, y = Sepal.Length)) + geom_boxplot()
+# separate boxes for each species
+ggplot(iris, aes(x = Species, y = Sepal.Length)) + geom_boxplot()
+
+```
+
+
+Demonstrated in this command
+- plot being saved as a object
+- multiple geoms being used
+- changing plot and axis titles
+- changing colours
+- using a different theme
+```{r}
+
+p <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, colour = Species, shape = Species)) + 
+  geom_point() + 
+  geom_line(aes(colour = "red")) + 
+  ylab("Width") + xlab("Length (mm)") + 
+  ggtitle("My Awesome Plot") + 
+  theme_bw()
+
+p
+```
+
+using ggsave() to save a plot
+```{r, eval=FALSE}
+ggsave(filename = '~/pretty_plot.png', plot = p, device = 'png')    
+```
+
+using the last plot function to replot the last plot with no legend
+```{r}
+last_plot() + theme(legend.position = 'none')
+```
+
+
+
+showing dplyr being combined with ggplot
+```{r}
+iris %>% 
+  select(Sepal.Length, Sepal.Width, Species) %>% 
+  filter(Sepal.Length > 5) %>% 
+  ggplot(., aes(x = Sepal.Length, y =Sepal.Width)) + geom_point()
+```
+
+
+
+tidyr example attempt to collapse sepal.length and sepal.width into a grouping variable (dimension) and a data variable (mm)
+
+```{r}
+iris %>% 
+  select(Species, Sepal.Length, Sepal.Width) %>% 
+  gather(.,"dimension", "mm", 2:3) %>% # gather is from tidyr
+  ggplot(., aes(x = dimension, y = mm, fill = Species)) + 
+  geom_bar(stat = 'identity', position = 'dodge')
+```
+
+
+A recreation of the SWC loops lesson for plotting multiple datasets
+```{r}
+# create the plotting function
+plot_graphs <- function(df){
+  p <- ggplot(df, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
+  return(p)
+}
+
+# create some example datasets
+df1 <- iris %>% filter(Species == 'setosa')
+df2 <- iris %>% filter(Species == 'virginica')
+datasets <- list(df1, df2)
+
+# plot using a loop
+for(d in datasets){
+  plot(plot_graphs(d))
+}
+
+```
+
+
+
+
+
