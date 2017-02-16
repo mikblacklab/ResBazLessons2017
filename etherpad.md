@@ -13,13 +13,10 @@ Users are expected to follow our code of conduct: http://software-carpentry.org/
 
 All content is publicly available under the Creative Commons Attribution License: https://creativecommons.org/licenses/by/4.0/
 
-
-Welcome to Room 201,202,203!
-
-Welcome to the Research Bazaar Dunedin
+# Welcome to the Research Bazaar Dunedin
+## Welcome to Room 201,202,203!
 
 Feb 8 - 10 2017
-
 
 See here for our schedule:
 https://2017.resbaz.com/dunedin
@@ -34,7 +31,7 @@ Notes for our workshops are on the Software Carpentry website or uploaded to our
    
    SWC Shell (Day1): http://swcarpentry.github.io/shell-novice
 
-  SWC SQL (Day 1 elective): http://swcarpentry.github.io/sql-novice-survey/
+   SWC SQL (Day 1 elective): http://swcarpentry.github.io/sql-novice-survey/
    
    SWC R (Day 2): http://swcarpentry.github.io/r-novice-inflammation
    
@@ -45,11 +42,12 @@ Notes for our workshops are on the Software Carpentry website or uploaded to our
 https://github.com/mikblacklab/ResBazLessons2017/tree/master/R_Shiny_Web_Apps
 
 
+# Morning Sessions
 
-
-##SWC Shell (Day1)
+## SWC Shell (Day1)
 
 Notes:
+```
    ~ shortcut for home directory
    mkdir make directory
    \ allows terminal to read folders with a 'space' in the name. Avoid spaces 
@@ -78,37 +76,38 @@ Notes:
     script.sh - saving commands to a script (end scripts in .sh)
     bash script.sh - run a script
     $1 - name of the first variable in a script
-    # - comment symbol, can add notes to scripts (these lines won't run)
-    
+    \# - comment symbol, can add notes to scripts (these lines won't run)
+```    
 
 
-##SWC R (Day2)
+## SWC R (Day2)
 
 Notes:  
 
     http://swcarpentry.github.io/r-novice-inflammation/
     
     http://swcarpentry.github.io/r-novice-inflammation/files/r-novice-inflammation-data.zip
-    
+
+```
     git clone https://github.com/swcarpentry/r-novice-inflammation.git
 
     getwd() = It will give you information where you are or what is your PATH (in R studio).
     Assigning value to some variable use "<-" sign.
     e.g: to assign 123 to weight  write it in a way weight  <-  123
     use # to write any comment in R studio
+```   
 
 
-    
-
-
-##SWC Git (Day3)
+## SWC Git (Day3)
 
 Notes:
- 
+
+
     
 # Advanced Morning Sessions
 
-##ResBaz R Packages (Day1)
+
+## ResBaz R Packages (Day1)
 
 Notes:
     
@@ -117,68 +116,124 @@ https://github.com/mikblacklab
 https://github.com/mikblacklab/ResBazLessons2017/tree/master/R_Packages_Functions
 
 
-##ResBaz R Reproducible Research (Day2)
+## ResBaz R Reproducible Research (Day2)
 
 Notes:
 
 https://github.com/mikblacklab/ResBazLessons2017
 
 http://www.markdowntutorial.com/
-    
-   
 
-##ResBaz R Shiny (Day3)
+
+## ResBaz R Shiny (Day3)
 
 Notes:
+
+
 
 # Afternoon Sessions   
 
-##ResBaz mini-session Advanced Shell (Day1)
+## ResBaz mini-session Advanced Shell (Day1)
 
 Notes:
-    
-##ResBaz mini-session parallel computing and scripting in R (Day1) with the New Zealand eScience Infrastructure
+
+
+## ResBaz mini-session parallel computing and scripting in R (Day1) with the New Zealand eScience Infrastructure
 
 Notes:
-    
-##SWC SQL (Day1)
+
+
+## SWC SQL (Day1)
 
 Notes:
 
 setup: https://swcarpentry.github.io/workshop-template/
 
 lessons  http://swcarpentry.github.io/sql-novice-survey/
-      
-    
 
-##ResBaz mini-session Introduction to Python (Day2)
+
+## ResBaz mini-session Introduction to Python (Day2)
 
 Notes:
-    
 
-##ResBaz mini-session Data Manipulation and Plotting in R (Day2)
+
+## ResBaz mini-session Data Manipulation and Plotting in R (Day2)
 
 Notes:
 
 https://github.com/mikblacklab/ResBazLessons2017/tree/master/R_Data_Manipulation_and_Plotting
 
-    
 
-##ResBaz mini-session Introduction to Command-line tools (Day2)
+## ResBaz mini-session Introduction to Command-line tools (Day2)
 
+   A lesson on how to set-up your computer so you can use command-line tools from anywhere, and you don't lose them buried in your direcotries.
+   
+   Example tool used:
 https://www.cog-genomics.org/plink2
 
-https://vcftools.github.io/examples.html
-mkdir MyTools
-mkdir bin
-ln -s /c/Users/whoyouare/MyTools/Plink/plink bin/plink2    
-    
+   - Make yourself a safe place to keep everything
+   
+   ```
+         mkdir ~/MyTools
+         mkdir ~/MyTools/bin
+   ```
+   
+   - From now on when you download a command-line tool save it in the MyTools directoy - that way you won't lose it or delete it
+   
+   - To run that program from anywhere we need to follow two/three quick set-up steps
+      - make a symbolic link to your new tool - this link should live in the ~/MyTools/bin folder you just made
+      - symbolic links need full file paths (not relational file paths - as in full/path/to/this/file vs ../this/file - ~ counts as a full path)
 
-##ResBaz mini-session Jupyter Notebooks (Day2)
+   - set-up your bash environment to always search for tools in your ~/MyTools/bin folder (as well as the places it normally searches)
+      - To do this make a .bashrc file - a .bashrc file is a file that runs (automatically) every time you open a new terminal window. It's purpose is to provide a place where you can set up variables, functions and aliases, define your prompt/other settings.
+      
+   ```
+   nano ~/.bashrc
+      PATH=${PATH}:/Users/myusername/MyTools/bin
+   # save and exit nano
+   ```
+   
+   - refresh your bash environment to read from that file
+   
+   ```
+   source ~/.bashrc
+   ```
+   
+   - on a mac you need to complete one final step, linking your .bashrc file to your .bash_profile file - if you do not do this you will need to run source ~/.bashrc everytime you open a new Terminal session
+      - here are two possible ways to do this
+   
+   ```
+   ln -s ~/.bashrc ~/.bash_profile
+   
+   OR [this is useful if your .bash_profile file already has something in it]
+   
+   nano ~/.bash_profile
+      source ~/.bashrc
+   # save and exit nano
+   
+   ```
+
+#### NEXT TIME YOU DOWNLOAD A NEW TOOL TO USE YOU ONLY NEED TO DO THE SYMBOLIC LINK STEP TO MAKE IT AVAILABLE FROM ANYWHERE
+
+   - if you have multiple tools in the same folder that you want to set up symbolic links to, use a for loop
+   
+   ```
+   cd ~/MyTools/folder/with/lots/of/tools
+   for tool in $(ls *); do ln -s ~/MyTools/folder/with/lots/of/tools/$tool ~/MyTools/bin/${tool}; done
+   ```
+
+#### why is any of this important/useful?
+   - if you need to access tools via other scripts it is much easier and tidier to only use the tool_name than the full file path
+      - eg. this Python script (https://github.com/MerrimanLab/snp_design) requires two command line tools to run, anyone can install & run it without having to edit the script to have their computers exact file path for these tools
+   - you can also make a group tools folder so everyone in your group uses the same tools/versions - all have .bashrc pointing to the same place; this is relevant to working on servers that everyone can access - not so much working on your own computer.
+
+
+## ResBaz mini-session Jupyter Notebooks (Day2)
 
 Notes:
-   
-    
+
+
+
 ## ResBaz mini-session Jupyter Notebooks Python session (Day2)
 
 Make sure that your Python environment is set up as documented on http://swcarpentry.github.io/python-novice-inflammation/setup/
