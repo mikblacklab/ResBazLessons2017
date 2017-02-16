@@ -5,6 +5,13 @@
    Example tool used:
 https://www.cog-genomics.org/plink2
 
+   If you try and run this tool from outside the folder it is saved in (before set-up) you will get an error
+   ```
+   bash: plink: command not found...
+   ```
+   
+   So, let's fix that!
+   
    - Make yourself a safe place to keep everything
    
    ```
@@ -47,7 +54,7 @@ https://www.cog-genomics.org/plink2
    
    ```
 
-  - now try it! go to any directory, type in the name of the tool you just installed (eg. plink). Does it run or 
+  - now try it! go to any directory, type in the name of the tool you just installed (eg. plink). Does it run?
 
 #### NEXT TIME YOU DOWNLOAD A NEW TOOL TO USE YOU ONLY NEED TO DO THE SYMBOLIC LINK STEP TO MAKE IT AVAILABLE FROM ANYWHERE
 
